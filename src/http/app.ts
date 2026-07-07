@@ -1,6 +1,13 @@
 import express from 'express';
 
-import { heartbeatRouter, healthRouter, latestOtpRouter, otpRouter, registerDeviceRouter } from '../routes';
+import {
+  deregisterDeviceRouter,
+  heartbeatRouter,
+  healthRouter,
+  latestOtpRouter,
+  otpRouter,
+  registerDeviceRouter,
+} from '../routes';
 
 export function createApp(): express.Express {
   const app = express();
@@ -11,6 +18,7 @@ export function createApp(): express.Express {
   app.use('/otp/latest', latestOtpRouter);
   app.use('/otp', otpRouter);
   app.use('/register', registerDeviceRouter);
+  app.use('/register', deregisterDeviceRouter);
 
   return app;
 }

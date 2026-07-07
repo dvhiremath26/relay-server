@@ -36,4 +36,5 @@ export interface DeviceSessionStore {
   uploadOtp(input: UploadOtpInput): UploadedOtp;
   getLatestOtp(): UploadedOtp | undefined;
   getByDeviceId(deviceId: string): RegisteredDeviceSession | undefined;
+  deleteByDeviceId(deviceId: string): RegisteredDeviceSession | undefined;
 }

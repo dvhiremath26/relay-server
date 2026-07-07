@@ -80,6 +80,21 @@ export class InMemoryDeviceSessionStore implements DeviceSessionStore {
     return uploadedOtp;
   }
 
+  deleteByDeviceId(deviceId: string): RegisteredDeviceSession | undefined {
+    const existingSession = this.sessions.get(deviceId);
+    if (!existingSession) {
+      return undefined;
+    }
+
+    this.sessions.delete(deviceId);
+
+    if (this.latestOtp?.deviceId === deviceId) {
+      this.latestOtp = undefined;
+    }
+
+    return existingSession;
+  }
+
   getLatestOtp(): UploadedOtp | undefined {
     return this.latestOtp;
   }
